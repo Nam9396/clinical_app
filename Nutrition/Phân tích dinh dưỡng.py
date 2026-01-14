@@ -14,16 +14,23 @@ c1, c2 = st.columns(2)
 
 with c1:
     age = st.number_input("Tuổi", min_value=0, max_value=120, value=1, key="age")
-    weight = st.number_input("Cân nặng (kg)", min_value=0.0, value=0.0, key="weight")
-
-with c2:
     sex = st.selectbox("Giới", ["Nam", "Nữ"], key="sex")
+    
+with c2:
+    weight = st.number_input("Cân nặng (kg)", min_value=0.0, value=0.0, key="weight")
     height = st.number_input("Chiều cao (cm)", min_value=0.0, value=0.0, key="height")
 
-stress = st.number_input("Chỉ số stress", min_value=0.5, max_value=3.0, value=1.0, step=0.1, key="stress",
+stress_index = st.number_input("Chỉ số stress", min_value=0.5, max_value=3.0, value=1.0, step=0.1, key="stress_index",
                          help="1.2: Dinh dưỡng tốt, vết thương lành tốt. 1.5: Sepsis, suy tim, suy dinh dưỡng. 2: Stress nặng, bỏng nặng")
 
 extra_vol = st.number_input("Nhu cầu dịch tăng thêm", min_value=0.0, value=0.0, key="extra_vol", help="Dịch mất do tiêu chảy, lỗ rò, đa niệu, mỗi độ > 38 độ C tăng 5ml/kg/ngày")
+
+customized_kcal = st.number_input(
+    "Nhập nhu cầu năng lượng cá thể hóa", 
+    min_value=0.0, 
+    help="Nhập số kcal/kg/ngày theo ý muốn, nếu không, mặc định tính nhu cầu năng lượng theo chiều cao và cân nặng",
+    key="customized_kcal"
+)
 
 st.markdown("---")
 
@@ -146,7 +153,8 @@ st.markdown("### Phân tích nhu cầu dịch")
 
 po_ml = st.session_state["po_ml"] * st.session_state["num_feeds"]
 lipid_ml = st.session_state['lipid_ml']
-iv_ml = st.session_state["infusion_rate"] * 24
+# iv_ml = st.session_state["infusion_rate"] * 24
+iv_ml = st.session_state["protein_ml"] + st.session_state["glucose_30_ml"] + st.session_state["glucose_10_ml"] + st.session_state["na_ml"] + st.session_state["k_ml"] + st.session_state["ca_ml"] + st.session_state["mg_ml"]
 total_actual_ml = po_ml + iv_ml + lipid_ml + st.session_state['med_vol']
 
 st.markdown("---")
@@ -161,6 +169,23 @@ with c2:
     st.markdown(f"{extra_vol} ml")
     st.markdown(f"{calc_fluid_need_holliday_segar() + extra_vol} ml")
 
+st.markdown("---")
+
+c1, c2 = st.columns(2, vertical_alignment="center")
+with c1: 
+    st.markdown("Thể tích dịch đường miệng")
+    st.markdown("Thể tích dịch đường IV")
+    st.markdown("Thể tích lipid")
+    st.markdown("Thể tích thuốc")
+    st.markdown("Tổng thể tích dịch thực tế")
+    st.markdown("Gấp bao nhiêu lần lý thuyết")
+with c2:
+    st.markdown(f"{po_ml} ml")
+    st.markdown(f"{iv_ml} ml")
+    st.markdown(f"{lipid_ml} ml")
+    st.markdown(f"{st.session_state['med_vol']} ml")
+    st.markdown(f"{total_actual_ml} ml")
+    st.markdown(f"{round(total_actual_ml / (calc_fluid_need_holliday_segar() + extra_vol), 1)} lần")
 
 st.markdown("---")
 
@@ -180,17 +205,20 @@ iv_kcal = round(protein_kcal + lipid_kcal + glucose_kcal, 1)
 
 total_kcal = po_kcal + iv_kcal
 
-ree = calc_ree()
+if customized_kcal == 0 or customized_kcal == None: 
+    ree = round(calc_ree(), 1)
+else: 
+    ree = round((customized_kcal * st.session_state["weight"]), 1)
 
-extra_kcal = st.session_state["stress"] * ree
+extra_kcal = ree * st.session_state["stress_index"]
 
 c1, c2 = st.columns(2)
 with c1: 
     st.markdown("Năng lượng dinh dưỡng đường miệng")
     st.markdown("Năng lượng dinh dưỡng đường IV")
     st.markdown("Tổng năng lượng thực tế")
-    st.markdown("Năng lượng nghỉ (REE)")
-    st.markdown("Năng lượng cộng thêm stress")
+    st.markdown("Năng lượng nghỉ (REE) lý thuyết")
+    st.markdown("Năng lượng cộng thêm stress lý thuyết")
     st.markdown("So với mục tiêu")
     st.markdown("% Năng lượng từ đường (kì vọng 70%)")
     st.markdown("% Năng lượng từ đạm (kì vọng 70%)")

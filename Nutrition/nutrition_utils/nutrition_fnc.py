@@ -42,9 +42,9 @@ def calc_ree():
 def solve_glucose_mix_safe(glucose_vol: float, glucose_g: float):
     if glucose_vol <= 0:
         return None, None
-
-    if not (0.1 * glucose_vol <= glucose_g <= 0.3 * glucose_vol):
-        raise ValueError("Giá trị glucose không thể pha từ G10% và G30%")
+    
+    # if not (0.1 * glucose_vol <= glucose_g <= 0.3 * glucose_vol):
+    #     raise ValueError("Giá trị glucose không thể pha từ G10% và G30%")
 
     x = 5 * glucose_g - 0.5 * glucose_vol
     y = glucose_vol - x
@@ -52,7 +52,6 @@ def solve_glucose_mix_safe(glucose_vol: float, glucose_g: float):
     return x, y
 
 # hiển thị dòng dữ liệu với label và value 
-
 def display_row(label, value):
     c1, c2 = st.columns(2, vertical_alignment="center")
     with c1:
@@ -60,3 +59,69 @@ def display_row(label, value):
     with c2:
         c2_label = st.markdown(value)
     return c1_label, c2_label
+
+# tính só ml glucose 10% và 30%
+def calc_glucose_solution(
+    V_bag_total: float,     # tổng thể tích chai dịch (ml)
+    V_glucose: float,       # thể tích dành để bơm glucose (ml)
+    G_target: float,        # gram glucose mục tiêu
+    iv_route: str,          # "Ngoại biên" | "Trung ương"
+):
+    """
+    return:
+        g30_ml, g10_ml, G_delivered
+    """
+
+    if V_bag_total <= 0 or V_glucose <= 0:
+        return 0.0, 0.0, 0.0
+
+    # 1. Giới hạn nồng độ theo đường truyền (tính trên TOÀN CHAI)
+    if iv_route == "Ngoại biên":
+        max_conc = 0.125
+    else:
+        max_conc = 0.25
+
+    G_max_by_conc = V_bag_total * max_conc
+
+    # 2. Giới hạn bởi thể tích glucose có thể bơm
+    G_max_by_volume = 0.3 * V_glucose
+
+    # 3. Lượng glucose thực sự có thể cho
+    G_effective = min(G_target, G_max_by_conc, G_max_by_volume)
+
+    if G_effective <= 0:
+        return 0.0, 0.0, 0.0
+
+    V = V_glucose
+    G = G_effective
+
+    # 4. Quyết định chiến lược pha
+
+    # Chỉ G10
+    if G <= 0.1 * V:
+        g10_ml = V
+        g30_ml = 0.0
+        G_delivered = 0.1 * V
+
+    # Chỉ G30
+    elif G >= 0.3 * V:
+        g30_ml = V
+        g10_ml = 0.0
+        G_delivered = 0.3 * V
+
+    # Phối hợp
+    else:
+        # x + y = V
+        # 0.3x + 0.1y = G
+        x = 5 * G - 0.5 * V   # ml G30
+        y = V - x             # ml G10
+
+        # bảo vệ số học
+        x = max(0.0, min(V, x))
+        y = max(0.0, min(V, y))
+
+        g30_ml = x
+        g10_ml = y
+        G_delivered = 0.3 * g30_ml + 0.1 * g10_ml
+
+    return g30_ml, g10_ml, G_delivered

@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from Nutrition.nutrition_utils.nutrition_store import protein_ls, lipid_ls, glucose_ls, na_ls, k_ls, ca_ls, mg_ls, po_nutrition_ls
-from Nutrition.nutrition_utils.nutrition_fnc import calc_fluid_need_holliday_segar, calc_ree, solve_glucose_mix_safe, display_row
+from Nutrition.nutrition_utils.nutrition_fnc import calc_fluid_need_holliday_segar, calc_ree, display_row, calc_glucose_solution
 
 st.set_page_config(page_title="Tính nhu cầu dinh dưỡng", layout="centered")
 st.markdown("## Tính nhu cầu dinh dưỡng")
@@ -14,15 +14,24 @@ st.markdown("### Thông tin bệnh nhân")
 c1, c2 = st.columns(2)
 with c1:
     age = st.number_input("Tuổi", min_value=0, max_value=120, value=1, key="age")
-    weight = st.number_input("Cân nặng (kg)", min_value=0.0, value=0.0, key="weight")
-    extra_fluid = st.number_input("Dịch tăng thêm", min_value=0.0, value=0.0, key="extra_fluid")
-with c2:
     sex = st.selectbox("Giới", ["Nam", "Nữ"], key="sex")
+    weight = st.number_input("Cân nặng (kg)", min_value=0.0, value=0.0, key="weight")
+    
+with c2:
     height = st.number_input("Chiều cao (cm)", min_value=0.0, value=0.0, key="height")
+    extra_fluid = st.number_input("Dịch tăng thêm", min_value=0.0, value=0.0, key="extra_fluid")
     stress_index = st.number_input("Chỉ số stress", min_value=0.0, value=1.0, key="stress_index", help="1.2: Dinh dưỡng tốt, vết thương lành tốt. 1.5: Sepsis, suy tim, suy dinh dưỡng. 2: Stress nặng, bỏng nặng")
 
 st.markdown("---") 
 
+customized_kcal = st.number_input(
+    "Nhập nhu cầu năng lượng cá thể hóa", 
+    min_value=0.0, 
+    help="Nhập số kcal/kg/ngày theo ý muốn, nếu không, dùng mặc định tính nhu cầu năng lượng theo chiều cao và cân nặng",
+    key="customized_kcal"
+)
+
+st.markdown("---")
 
 if st.session_state["age"] == 0 or st.session_state["weight"] == 0 or st.session_state["height"] == 0: 
     st.warning("Vui lòng điền đủ thông tin bệnh nhân")
@@ -145,7 +154,7 @@ st.markdown("---")
 
 # ================== CONTAINER ==================
 
-# st.markdown("### Dinh dưỡng tĩnh mạch")
+# st.markdown("### Chọn thành phần dinh dưỡng tĩnh mạch")
 
 c1, c2 = st.columns(2, vertical_alignment="center")
 with c1:
@@ -185,19 +194,25 @@ nutrition_row("Magne", mg_ls, "mg")
 st.markdown("---")
 
 
-# ================== CONTAINER ==================
+# ================== CALCULATION ==================
 
-st.markdown("### Phân tích nhu cầu dinh dưỡng")
+# st.markdown("### Tính cấu phần của dịch nuôi ăn")
 
+# tính nhu cầu dịch và năng lượng chung
 fluid_need = round((calc_fluid_need_holliday_segar() + st.session_state["extra_fluid"]), 1)
-energy_need = round((calc_ree() * st.session_state["stress_index"]), 1)
+
+if customized_kcal == 0 or customized_kcal == None: 
+    energy_need = round((calc_ree() * st.session_state["stress_index"]), 1)
+else: 
+    energy_need = round((customized_kcal * st.session_state["weight"] * st.session_state["stress_index"]), 1)
+
 po_vol = round(st.session_state["po_ml"] * st.session_state["num_feeds"], 1)
 po_energy = round(st.session_state["po_sol"]["kcal_ml"] * po_vol, 1)
 med_vol = st.session_state["med_vol"]
 iv_vol = round(fluid_need - po_vol - med_vol, 1)
 iv_energy = round(energy_need - po_energy, 1)
-# infusion_rate = iv_vol / 24
 
+# tính số ml các chất cơ bản
 protein_ml = round(st.session_state["protein_need"] * st.session_state["weight"] / st.session_state["protein_type"]["con_per_ml"], 1)
 lipid_ml = round(st.session_state["lipid_need"] * st.session_state["weight"] / st.session_state["lipid_type"]["con_per_ml"], 1)
 na_ml = round(st.session_state["na_need"] * st.session_state["weight"] / st.session_state["na_type"]["con_per_ml"], 1)
@@ -206,19 +221,35 @@ ca_ml = round(st.session_state["ca_need"] * st.session_state["weight"] / st.sess
 mg_ml = round(st.session_state["mg_need"] * st.session_state["weight"] / st.session_state["mg_type"]["con_per_ml"], 1)
 # p_ml = round(st.session_state["p_need"] * st.session_state["weight"] / st.session_state["p_type"]["con_per_ml"], 1)
 
+# tính thể tích sau khi trừ đi lipid
 lipid_rate = round(lipid_ml / 24, 1)
 final_iv_vol = round(iv_vol - lipid_ml, 1)
 final_iv_rate = round(final_iv_vol / 24, 1)
 
+# tính mức năng lượng từ đại chất
 protein_kcal = round(st.session_state["protein_need"] * st.session_state["weight"] * 4, 1)
 lipid_kcal = round(st.session_state["lipid_need"] * st.session_state["weight"] * 10, 1)
+# glucose_kcal = round(iv_energy - protein_kcal - lipid_kcal, 1)
+# glucose_g = round(glucose_kcal / 3.4, 1)
+
+# tính các khía cạnh của đường 
+iv_route = st.session_state["iv_route"]
 glucose_kcal = round(iv_energy - protein_kcal - lipid_kcal, 1)
-glucose_g = round(glucose_kcal / 3.4, 1)
-glucose_ml = round(final_iv_vol - protein_ml - na_ml - k_ml - ca_ml - mg_ml, 1)
-g30_ml, g10_ml = solve_glucose_mix_safe(glucose_ml, glucose_g)
-glucose_con = round(glucose_g / final_iv_vol * 100, 1) 
+G_target = round(glucose_kcal / 3.4, 1)
+V_bag_total = final_iv_vol
+V_glucose = round(final_iv_vol - protein_ml - na_ml - k_ml - ca_ml - mg_ml, 1)
+g30_ml, g10_ml, G_delivered = calc_glucose_solution(
+    V_bag_total=V_bag_total, 
+    V_glucose=V_glucose, 
+    G_target=G_target, 
+    iv_route=iv_route
+)
+glucose_con = round(G_delivered / final_iv_vol * 100, 1) 
 glucose_rate = round(glucose_con / 100 * 1000 * final_iv_rate / 60 / st.session_state["weight"], 1)
 
+# ================== CONTAINER ==================
+
+st.markdown("### Xác định thành phần dinh dưỡng")
 
 st.markdown(f"Nhu cầu dịch: **{fluid_need}** ml")
 st.markdown(f"Nhu năng lượng: **{energy_need}** kcal")
@@ -249,6 +280,8 @@ display_row(f'{st.session_state["mg_type"]["name"]}', f"{mg_ml} ml")
 display_row("Tốc độ truyền dịch tĩnh mạch", f"{final_iv_rate} ml/giờ")
 display_row(f"Nồng độ đường ({st.session_state['iv_route']})", f"{glucose_con}%")
 display_row(f"Tốc độ đường ({st.session_state['iv_route']})", f"{glucose_rate} mg/kg/phút")
+if G_delivered < G_target:
+    st.warning("⚠️ Không thể đạt đủ số gram glucose mục tiêu do giới hạn nồng độ hoặc thể tích")
 
 st.markdown("---")
 
