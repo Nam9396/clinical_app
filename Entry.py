@@ -1,5 +1,6 @@
 import streamlit as st
 
+# ==== Trang dinh dưỡng ===
 
 cal_nutrition_need = st.Page(
     "Nutrition/1_Tính nhu cầu dinh dưỡng.py", 
@@ -19,9 +20,19 @@ nutrition_note = st.Page(
     icon=":material/notes:"
 )
 
+# === Trang KMĐM ===
+
+abg_analysis = st.Page(
+    "ABG/1_Phân tích khí máu.py", 
+    title="Phân tích khí máu", icon=":material/spo2:", 
+)
+
+
+
 pg = st.navigation(
     {
         "Nutrition": [cal_nutrition_need, eval_nutrition_formula, nutrition_note],
+        "ABG": [abg_analysis]
     }
 )
 

@@ -1,16 +1,3 @@
-# import streamlit as st
-# from pathlib import Path
-
-# st.title("Ghi chú dinh dưỡng")
-
-# md_path = Path("Nutrition/nutrition_utils/Ghi chú dinh dưỡng.md")
-
-# if md_path.exists():
-#     st.markdown(md_path.read_text(encoding="utf-8"), unsafe_allow_html=True)
-# else:
-#     st.error("Không tìm thấy file Ghi chú dinh dưỡng.md")
-
-
 import base64
 import streamlit as st
 from pathlib import Path
