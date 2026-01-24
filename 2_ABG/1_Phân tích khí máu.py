@@ -1,8 +1,8 @@
 import streamlit as st
 import time 
 from pathlib import Path
-from App.graphs._1_qa_chain import abg_qa
-from App.components.ui import display_retry_loop_error
+from backend.chains._1_qa_chain import abg_chain
+from backend.components.ui import display_retry_loop_error
 
 st.set_page_config(page_title="Phân tích khí máu động mạch", layout="centered")
 st.markdown("## Phân tích khí máu động mạch")
@@ -99,7 +99,7 @@ if submit:
 
         for attempt in range(3):
             try:
-                response = abg_qa(
+                response = abg_chain(
                     input_info=input_info, 
                     context=guideline_text,
                 )

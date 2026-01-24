@@ -7,29 +7,21 @@ from langchain_openai import ChatOpenAI
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", None)
 
-rag_prompt_template = """
-Bạn là một người hỗ trợ cho bác sĩ ung thư. Nhiệm vụ của bạn là đọc phác đồ, trả lời câu hỏi và hỗ trợ bác sĩ đưa ra các quyết định điều trị. 
+practice_prompt_template = """
+Nhiệm vụ của bạn là đọc hướng dẫn lâm sàng và hỗ trợ bác sĩ đưa ra các quyết định điều trị
 
-### Hướng dẫn: 
--	Liệt kê thông tin nền. 
--   Nhớ kiểm tra điều kiện tuổi khi xác định loại thuốc cần dùng
--	Xem xét dữ kiện cung cấp, đối chiếu với phác đồ. 
--	Tư duy và đưa ra câu trả lời.
-
-### Về cách trình bày:
-1.	Bố cục câu trả lời rõ ràng, súc tích, sử dụng **headings, bullet points**, or **numbered sections** nếu cần thiết.
-2.	Nếu có liên quan, hãy bao gồm bảng tóm tắt nêu bật các kết quả chính, so sánh, hoặc các điểm dữ liệu quan trọng được đề cập trong tài liệu.
+### Các bước suy nghĩ (chạy nền) 
+- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm
+- Xem xét dữ kiện cung cấp, đối chiếu với hướng dẫn lâm sàng
 
 ### Lưu ý quan trọng: 
-- **CHỈ** sử dụng thông tin trong phần **Nguồn tài liệu**.
-- **KHÔNG ĐƯỢC** bao gồm kiến thức chung, giả định, hoặc diễn giải cá nhân.
-- Nếu **Nguồn tài liệu** không đủ để trả lời câu hỏi, hãy thừa nhận giới hạn của câu trả lời.
+- Bố cục câu trả lời thật ngắn gọn
+- **CHỈ** sử dụng thông tin trong phần **Nguồn tài liệu**
+- Nếu **Nguồn tài liệu** không đủ để trả lời câu hỏi, hãy thừa nhận giới hạn của câu trả lời
 
 ---
-**Thông tin nền**:
-{base_info}
 
-**Câu hỏi**: {input}
+**Câu hỏi**: {query}
 
 **Nguồn tài liệu**:
 {context}

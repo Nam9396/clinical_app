@@ -1,5 +1,5 @@
 from typing import Dict
-from setting import get_rag_model, rag_prompt_template, abg_prompt_template
+from setting import get_rag_model, abg_prompt_template, practice_prompt_template
 from langchain_core.prompts import PromptTemplate
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -15,9 +15,9 @@ from langchain_core.output_parsers import StrOutputParser
 
 model = get_rag_model()
 
-rag_prompt = PromptTemplate(
-    template=rag_prompt_template,
-    input_variables=["input", "context"]
+practice_prompt = PromptTemplate(
+    template=practice_prompt_template,
+    input_variables=["query", "context"]
 )
 
 abg_prompt = PromptTemplate(
@@ -27,40 +27,55 @@ abg_prompt = PromptTemplate(
 
 
 
-def generate_answer_retriever(question: str, vector_store: Dict, base_info: Dict):
+# def generate_answer_retriever(question: str, vector_store: Dict, base_info: Dict):
 
-    retriever = vector_store.as_retriever(
-        search_type="mmr",
-        search_kwargs={
-            "k": 3,
-            "fetch_k": 10,
-            # "lambda_mult": 0.6,
-            "lambda_mult": 0.2,
-        }
-    )
+#     retriever = vector_store.as_retriever(
+#         search_type="mmr",
+#         search_kwargs={
+#             "k": 3,
+#             "fetch_k": 10,
+#             # "lambda_mult": 0.6,
+#             "lambda_mult": 0.2,
+#         }
+#     )
 
-    docs = retriever.invoke(question)
+#     docs = retriever.invoke(question)
+
+#     prompt_input = {
+#         "base_info": str(base_info),
+#         "input": question,
+#         "context": docs
+#     }
+
+#     answer = (
+#         rag_prompt
+#         | model
+#         | StrOutputParser()
+#     ).invoke(prompt_input)
+
+#     return {
+#         "answer": answer,
+#         "context": docs
+#     }
+
+
+def practice_chain(query, context):
 
     prompt_input = {
-        "base_info": str(base_info),
-        "input": question,
-        "context": docs
+        "query": query,
+        "context": context
     }
 
     answer = (
-        rag_prompt
+        practice_prompt
         | model
         | StrOutputParser()
     ).invoke(prompt_input)
 
-    return {
-        "answer": answer,
-        "context": docs
-    }
+    return answer
 
 
-
-def abg_qa(input_info: Dict, context: str):
+def abg_chain(input_info: Dict, context: str):
 
     prompt_input = {
         "input_info": str(input_info),
