@@ -1,5 +1,5 @@
 from typing import Dict
-from setting import get_rag_model, abg_prompt_template, practice_prompt_template
+from setting import get_rag_model, abg_prompt_template, practice_prompt_template, med_cal_prompt_template
 from langchain_core.prompts import PromptTemplate
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -23,6 +23,11 @@ practice_prompt = PromptTemplate(
 abg_prompt = PromptTemplate(
     template=abg_prompt_template, 
     input_variables=["input_info", "context"]
+)
+
+med_cal_prompt = PromptTemplate(
+    template= med_cal_prompt_template, 
+    input_variables=["query", "context"]
 )
 
 
@@ -68,6 +73,22 @@ def practice_chain(query, context):
 
     answer = (
         practice_prompt
+        | model
+        | StrOutputParser()
+    ).invoke(prompt_input)
+
+    return answer
+
+
+def med_cal_chain(query, context):
+
+    prompt_input = {
+        "query": query,
+        "context": context
+    }
+
+    answer = (
+        med_cal_prompt
         | model
         | StrOutputParser()
     ).invoke(prompt_input)

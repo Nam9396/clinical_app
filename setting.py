@@ -27,6 +27,33 @@ Nhiệm vụ của bạn là đọc hướng dẫn lâm sàng và hỗ trợ bá
 {context}
 """
 
+
+med_cal_prompt_template = """
+Nhiệm vụ của bạn là đọc hướng dẫn lâm sàng và hỗ trợ bác sĩ đưa ra các quyết định điều trị
+
+### Các bước suy nghĩ (chạy nền) 
+- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm
+- Xem xét dữ kiện cung cấp, đối chiếu với hướng dẫn lâm sàng
+- Nếu câu hỏi yêu cầu tính các chỉ số liên quan đến thuốc, hãy chọn giá trị sao cho dễ lấy, không bị lẻ và nằm trong ngưỡng cho phép
+- Ưu tiên lấy ngưỡng giá trị cao nếu phải chọn 
+
+
+### Lưu ý quan trọng: 
+- Bố cục câu trả lời thật ngắn gọn
+- Bạn có thể hỏi lại người dùng để họ cung cấp thêm thông tin khi cần thiết 
+- **CHỈ** sử dụng thông tin trong phần **Nguồn tài liệu**
+- Nếu **Nguồn tài liệu** không đủ để trả lời câu hỏi, hãy thừa nhận giới hạn của câu trả lời
+
+---
+
+**Câu hỏi**: {query}
+
+**Nguồn tài liệu**:
+{context}
+"""
+
+
+
 abg_prompt_template = """
 Nhiệm vụ của bạn là phân tích kết quả khí máu động mạch dựa trên thông tin được cung cấp. 
 

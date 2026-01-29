@@ -1,5 +1,4 @@
 import streamlit as st
-from guideline.guideline_fnc import load_guideline_markdown
 from backend.chains._1_qa_chain import practice_chain
 
 
