@@ -2,7 +2,7 @@ from pathlib import Path
 import streamlit as st
 
 MED_REGISTRY = {
-# bạch cầu cấp
+
     # thuốc kháng sinh
     "Acyclovir": "antibiotic/acyclovir.md",
     "Amikacin": "antibiotic/amikacin.md",

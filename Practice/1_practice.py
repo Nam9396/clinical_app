@@ -1,12 +1,20 @@
 import streamlit as st
 from backend.chains._1_qa_chain import practice_chain
+from Practice.practice_utils.load_md import load_practice_markdown
 
 
 
 st.markdown("## TRA CỨU CÁC VẤN ĐỀ THỰC HÀNH")
 
 guideline_list = [
-    
+    "Hạ Kali", 
+    "Hạ Natri", 
+    "Hạ Canxi", 
+    "Tăng Kali", 
+    "Tăng Natri",
+    "Hạ đường huyết",
+    "Tăng áp nội sọ",
+    "Toan chuyển hóa",
 ]
 
 with st.form(key='guideline_form'):
@@ -23,7 +31,7 @@ with st.form(key='guideline_form'):
 
 if submit and query and guideline_code :
 
-    guideline_text = load_guideline_markdown(guideline_code)
+    guideline_text = load_practice_markdown(guideline_code)
 
     with st.expander("📄 Nội dung hướng dẫn"):
         st.markdown(guideline_text)
