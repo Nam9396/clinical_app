@@ -7,6 +7,8 @@ from Practice.practice_utils.load_md import load_practice_markdown
 st.markdown("## TRA CỨU CÁC VẤN ĐỀ THỰC HÀNH")
 
 guideline_list = [
+    "An thần thở máy", 
+    "Ngưng tim ngưng thở",
     "Hạ Kali", 
     "Hạ Natri", 
     "Hạ Canxi", 
@@ -15,6 +17,7 @@ guideline_list = [
     "Hạ đường huyết",
     "Tăng áp nội sọ",
     "Toan chuyển hóa",
+    "Cơn tăng huyết áp",
 ]
 
 with st.form(key='guideline_form'):

@@ -23,12 +23,26 @@ MED_REGISTRY = {
 
     # thuốc thần kinh
     "Diazepam": "neuromed/diazepam.md",
-    "Fentanyl": "fentanyl.md",
-    "Levetiracetam": "Levetiracetam.md",
+    "Fentanyl": "neuromed/fentanyl.md",
+    "Levetiracetam": "neuromed/levetiracetam.md",
     "Midazolam": "neuromed/midazolam.md",
-    "Morphin": "morphin.md",
+    "Morphin": "neuromed/morphin.md",
     "Phenobarbital": "neuromed/phenobarbital.md",
-    "Promethazine": "promethazine.md"
+    "Promethazine": "neuromed/promethazine.md",
+
+    # các dung dịch 
+    "Mannitol": "solution/mannitol.md",
+    "Natriclorua": "solution/natriclorua.md",
+    "Lactate Ringer": "solution/lactate_ringer.md",
+
+    # thuốc vận mạch 
+    "Adrenaline": "vasopressor/adrenaline.md",
+    "Dopamine": "vasopressor/dopamine.md",
+    "Dobutamine": "vasopressor/dobutamine.md",
+    "Noradrenaline": "vasopressor/noradrenaline.md", 
+
+    # thuốc miễn dịch 
+    "Immunoglobulin": "immunomed/immunoglobulin.md"
 }
 
 

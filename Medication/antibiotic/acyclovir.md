@@ -31,6 +31,28 @@ Intravenous formulations available as solution (50 mg/mL) or as powder for solut
     + Infants, Children, and Adolescents: 10 mg/kg/dose every 8 hours or 500 mg/m2/dose every 8 hours for 7 to 10 days. 
     + Higher doses of 15 to 20 mg/kg/dose every 8 hours have been recommended for disseminated or CNS infection. May convert to oral therapy once clinical improvement is observed and no new lesions for 48 hours to complete a 10- to 14-day course in immunocompromised patients
 
+- **Varicella, treatment**
+Varicella (chickenpox), treatment: Note: Begin treatment within the first 24 hours of rash onset if possible.
+
+    **Immunocompetent host:**
+    - Oral therapy (ambulatory): Infants, Children, and Adolescents: Oral: 20 mg/kg/dose 4 times daily for 5 days; maximum dose: 800 mg/dose
+    - Intravenous therapy (inpatient): Infants, Children, and Adolescents: IV: 10 mg/kg/dose or 500 mg/m2/dose every 8 hours for 7 to 10 days ; may consider 15 to 20 mg/kg/dose every 8 hours for severe disseminated or CNS infection
+
+    **Immunocompromised host (patients without HIV):**
+    -   Infants and Children <2 years: IV: 10 mg/kg/dose every 8 hours for 7 to 14 days, depending on clinical response
+    - Children ≥2 years and Adolescents: IV: 10 mg/kg/dose or 500 mg/m2/dose every 8 hours for 7 to 14 days, depending on clinical response, may consider 15 to 20 mg/kg/dose every 8 hours for severe disseminated or CNS infection 
+
+    **Patients with HIV:**
+
+    **Mild, uncomplicated disease and no or moderate immune suppression:**
+    - Infants and Children: Oral: 20 mg/kg/dose 4 times daily for 7 to 10 days and until no new lesions for 48 hours; maximum dose: 800 mg/dose 
+    -   Adolescents (alternative therapy): Oral: 800 mg 5 times daily for 5 to 7 days 
+
+    **Severe, complicated disease or severe immune suppression:**
+    - Infants: IV: 10 mg/kg/dose every 8 hours for 7 to 10 days and until no new lesions for 48 hours
+    - Children: IV: 10 mg/kg/dose or 500 mg/m2/dose every 8 hours for 7 to 10 days or until no new lesions for 48 hours 
+    - Adolescents: IV: 10 mg/kg/dose every 8 hours for 7 to 10 days; may convert to oral therapy after defervescence if no evidence of visceral involvement 
+
 
 ### Dosing: Liver Impairment: Pediatric
 No dosage adjustments necessary.
@@ -55,7 +77,7 @@ Hypersensitivity to acyclovir, valacyclovir, or any component of the formulation
 
 
 ### Administration
-- Maximum concentration <= 7 mg/ml
+- Maximum concentration <= 7 mg/ml. Standard clinical practice: <= 5 mg/ml
 - Intermittent infusion: The dose should be infused over 1 hour to minimize renal dysfunction
 - IV push: not recommended
 - Suitable diluents D5W and NS
@@ -64,6 +86,14 @@ Hypersensitivity to acyclovir, valacyclovir, or any component of the formulation
 -	**Oral:** May administer with or without food; shake suspension well before use. Maintain adequate hydration during therapy.
 -	**Parenteral:** Administer by slow IV infusion over at least 1 hour; rapid infusion is associated with nephrotoxicity due to crystalluria and renal tubular damage and should be avoided. Maintain adequate hydration during therapy. Do not administer IV push, IM, or SUBQ.
 -	Acyclovir IV may be an irritant with vesicant-like properties; ensure proper needle or catheter placement prior to and during IV infusion; avoid extravasation. If extravasation occurs, stop infusion immediately; leave cannula/needle in place temporarily but do NOT flush the line; gently aspirate extravasated solution, then remove needle/cannula; elevate extremity; apply dry warm compresses; initiate hyaluronidase antidote in addition to supportive management for refractory cases 
+
+### Y lệnh mẫu (38kg)
+Bệnh nhân sốt, đau đầu, co giật cục bộ, kích động, loạn thần, Ctscan có tổn thương thùy thái dương 
+
+Azein (Acyclovir) 250mg 
+- 380mg
+- Pha với NS đủ 80ml 	
+- TTM 80ml/giờ x 3 cữ
 
 
 ### Dosing for neonate

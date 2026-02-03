@@ -6,35 +6,52 @@ Bé trai, 20 ngày tuổi, 4.5kg, bệnh 2N, sốt cao liên tục, ọc ói nhi
 **Chẩn đoán:** Co giật – Hạ đường huyết – Sốt nhiễm trùng – Theo dõi nhiễm trùng huyết 
 
 ### Trọng tâm lí thuyết 
+**Các chỉ số cần nhớ**
 -	Đường huyết bình thường: 70 – 100 mg% (~ 4 – 6mmol/L)
 -	Trẻ sơ sinh có thể hạ đường huyết thoáng qua trong 48 – 72h đầu, 59±11 mg/dL
--	Ngưỡng hạ đường huyết để xác định chẩn đoán là 50mg%, đủ thấp để loại trừ dương giả mà cũng đủ cao để không gây biến chứng thần kinh
+-	Ngưỡng hạ đường huyết để xác định chẩn đoán: 50mg% (~ 3mmol/L), đủ thấp để loại trừ dương giả mà cũng đủ cao để không gây biến chứng thần kinh
+-	**Điều trị khi bệnh nhân có đường huyết < 70mg% và có triệu chứng**
+
+**Lưu ý về triệu chứng**
 -	Triệu chứng thần kinh: bứt rứt, kích thích, lú lẫn, hôn mê, co giật, vã mồ hôi, tim đập nhanh, run chi
 -	Ở trẻ sơ sinh và trẻ nhỏ: kích thích quấy khóc, đừ, bú kém, tím tái, run chi, co giật.
 -	Triệu chứng thường xuất hiện khi đường huyết < 50mg%
--	Nếu hạ đường lặp lại nhiều lần, triệu chứng thần kinh sẽ ít xuất hiện hơn và làm chậm trễ nhận biết 
--	Điều trị khi bệnh nhân có đường huyết < 70mg% và có triệu chứng 
+-	Nếu hạ đường lặp lại nhiều lần, triệu chứng thần kinh sẽ ít xuất hiện hơn, làm chậm trễ nhận biết 
 -	Nếu có hạ đường, luôn làm glucose máu để xác định chẩn đoán hạ đường huyết 
+
+**Lưu ý về điều trị**
 -	Điều trị ngay nếu bệnh nhân có triệu chứng ghi nhờ hạ đường huyết mà không cần xét nghiệm
 -	Mục tiêu điều trị là nâng đường huyết > 70mg%
 -	Nếu trẻ uống được: 15g đường (nhũ nhi: 0.2g/kg)
 -	Đường dùng để chích điều trị hạ đường huyết là đường dextrose 
--	Sơ sinh: D10% 2ml/kg/liều TMC trong 2 – 3 phút 
--	Nhũ nhi và trẻ nhỏ: D10% 2.5 - 5ml/kg/liều TMC trong 2 – 3 phút 
--	Trẻ ≥ 12 tuổi: D30% 2ml/kg/liều TMC trong 2 – 3 phút 
+
+    -	Sơ sinh: D10% 2ml/kg/liều TMC trong 2 – 3 phút 
+
+    -	Nhũ nhi và trẻ nhỏ: D10% 2.5 - 5ml/kg/liều TMC trong 2 – 3 phút 
+
+    -	Trẻ ≥ 12 tuổi: D30% 2ml/kg/liều TMC trong 2 – 3 phút 
+    
 -	KHÔNG dùng đường D30% cho trẻ nhỏ và không bolus quá nhiều lần D30% vì nguy cơ gây hạ đường huyết phản ứng kéo dài
 -	Kiểm tra lại sau 15 phút, nếu không đáp ứng lặp lại liều bolus thứ hai
 -	Nếu bệnh nhân không thể uống và không lấy được vein; glucagon 0.5 mg (for <25 kg body weight) or 1 mg (for ≥25 kg body weight) IM or SQ (maximum dose 1 mg)
 -	Sau liều bolus, truyền đường duy trì: sơ sinh và nhũ nhi (GIR: 5 to 6 mg/kg/minute), trẻ lớn (GIR: 2 to 3 mg/kg/minute)
--	Rate of dextrose infusion (mL/hr) = GIR (mg/kg/minute) × 6 × weight (kg) ÷ dextrose percentage of fluid (eg, 5 for D5W or 10 for D10W)
+-	**Rate of dextrose infusion (mL/hr) = GIR (mg/kg/minute) × 6 × weight (kg) ÷ dextrose percentage of fluid (eg, 5 for D5W or 10 for D10W)**
 -	Theo dõi mỗi 15 phút khi còn hạ đường huyết, theo dõi mỗi giờ khi đường huyết về ngưỡng bình thường (> 70 mg%)
 -	Chỉnh tốc độ đường duy trì mỗi 15 phút, tăng 1 mg/kg/phút cho đến khi đạt đường huyết mong muốn
--	Trong bệnh cảnh cấp tính, một giá trị đường huyết bình thường không loại trừ nguy cơ hạ đường huyết về lâu dài. Nếu trẻ có rối loạn chuyển hóa đường bẩm sinh không nhận biết, trẻ có thể hạ đường mà không nhận biết gây tổn thương thần kinh nghiêm trọng 
--	Nguyên nhân: ăn bú kém, ói nhiều, sepsis, rối loạn chuyển hóa, ngộ độc 
--	Nếu trẻ vẫn hạ đường huyết sau glucagon + không uống được + không tiếp cận mạch được -> bảo vệ đường thở, xem xét đặt NKQ, đặt sonde dạ dày truyền đường với liều lượng như đường tiêm mạch
+
+
+### Các viết y lệnh tiêm mạch chậm đường
+**Y lệnh dextrose tiêm mạch chậm bolus**
+-   Dextrose 10% 500ml 
+-	9ml TMC
+
+**Y lệnh dextrose truyền duy trì**
+- Dextrose 10% 500ml 
+- TTM 15 ml/giờ 
+- GIR: ~5.6 mg/kg/phút
 
 ### Công thức tính tốc độ đường 
-GIR = Nồng độ đường / 100 x 1000 x tốc độ truyền / CN / 60 (mg/kg/phút)
+GIR (mg/kg/phút) = Nồng độ đường (%) / 100 x 1000 x tốc độ truyền (ml/giờ) / cân nặng (kg) / 60 
 
 ### Y lệnh ban đầu 
 - Chuyển phòng cấp cứu

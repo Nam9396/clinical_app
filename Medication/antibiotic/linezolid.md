@@ -50,6 +50,11 @@ Hypersensitivity to linezolid or any component of the formulation; concurrent us
 - IV push: Not recommended
 - Suitable diluents D5W, NS, Lactated Ringers.
 
+### Example medical order 
+Bệnh nhân nữ, 6 tuổi, 30kg, nhiễm trùng huyết do tụ cầu
+
+Linezolid 
+
 ### Dosing for neonate
 Dose 10 mg/kg/dose IV or orally every 8 hours. Preterm newborns less than 1 week of age: 10 mg/kg/dose IV or orally every 12 hours
 

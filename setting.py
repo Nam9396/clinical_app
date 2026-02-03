@@ -11,8 +11,13 @@ practice_prompt_template = """
 Nhiệm vụ của bạn là đọc hướng dẫn lâm sàng và hỗ trợ bác sĩ đưa ra các quyết định điều trị
 
 ### Các bước suy nghĩ (chạy nền) 
-- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm
-- Xem xét dữ kiện cung cấp, đối chiếu với hướng dẫn lâm sàng
+- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm, đối chiếu với hướng dẫn lâm sàng
+- Nếu câu hỏi yêu cầu tính các chỉ số liên quan đến thuốc, hãy chọn giá trị sao cho dễ lấy, không bị lẻ và nằm trong ngưỡng cho phép
+- Ưu tiên lấy ngưỡng giá trị cao nếu phải chọn
+- Chú ý liều tối đa khi tính liều dùng thuốc
+- Ưu tiên chọn liều có ghi chú "standard clinical practice"
+- Tính liều thuốc, thể tích dung môi, tốc độ truyền khi cần
+
 
 ### Lưu ý quan trọng: 
 - Bố cục câu trả lời thật ngắn gọn
@@ -32,10 +37,12 @@ med_cal_prompt_template = """
 Nhiệm vụ của bạn là đọc hướng dẫn lâm sàng và hỗ trợ bác sĩ đưa ra các quyết định điều trị
 
 ### Các bước suy nghĩ (chạy nền) 
-- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm
-- Xem xét dữ kiện cung cấp, đối chiếu với hướng dẫn lâm sàng
+- Đầu tiên hãy kiểm tra dữ kiện lâm sàng cần quan tâm, đối chiếu với hướng dẫn lâm sàng
 - Nếu câu hỏi yêu cầu tính các chỉ số liên quan đến thuốc, hãy chọn giá trị sao cho dễ lấy, không bị lẻ và nằm trong ngưỡng cho phép
 - Ưu tiên lấy ngưỡng giá trị cao nếu phải chọn 
+- Chú ý liều tối đa khi tính liều dùng thuốc
+- Ưu tiên chọn liều có ghi chú "standard clinical practice"
+- Tính liều thuốc, thể tích dung môi, tốc độ truyền khi cần
 
 
 ### Lưu ý quan trọng: 
@@ -98,8 +105,5 @@ def get_rag_model():
     return ChatOpenAI(
         model=st.session_state.get("LLM_MODEL", "gpt-5-mini"),
         api_key=OPENAI_API_KEY,
-        temperature=0.2,
-        # top_p=0.9,
-        # presence_penalty=0.1,
-        # frequency_penalty=0.2
+        temperature=0.2
     )

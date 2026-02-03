@@ -5,7 +5,6 @@ import streamlit as st
 cal_nutrition_need = st.Page(
     "Nutrition/1_nutrition_cal.py", 
     title="Tính nhu cầu dinh dưỡng", icon=":material/nutrition:", 
-    default=True
 )
 
 eval_nutrition_formula = st.Page(
@@ -37,6 +36,7 @@ abg_note = st.Page(
 practice = st.Page(
     "Practice/1_practice.py", 
     title="Thực hành", icon=":material/quick_reference:", 
+    default=True        
 )
 
 # === Trang thông tin thuốc ===
@@ -52,8 +52,8 @@ med_cal = st.Page(
  
 pg = st.navigation(
     {
-        "Mediaction": [med_cal],
         "Practice": [practice],
+        "Mediaction": [med_cal],
         "ABG": [abg_analysis, abg_note], 
         "Nutrition": [cal_nutrition_need, eval_nutrition_formula, nutrition_note],
     }

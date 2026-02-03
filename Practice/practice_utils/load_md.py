@@ -10,6 +10,9 @@ PRACTICE_REGISTRY = {
     "Hạ đường huyết": "emergency/hạ đường huyết.md",
     "Tăng áp nội sọ": "emergency/tăng áp nội sọ.md",
     "Toan chuyển hóa": "emergency/toan chuyển hóa.md",
+    "Cơn tăng huyết áp": "emergency/cơn tăng huyết áp.md",
+    "Ngưng tim ngưng thở": "emergency/ngưng tim ngừng thở.md",
+    "An thần thở máy": "emergency/an thần thở máy.md",
 }
 
 
